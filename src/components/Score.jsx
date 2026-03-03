@@ -1,9 +1,9 @@
 // src/components/Score.jsx
-function Score() {
+function Score({ score, total }) {
   return (
-    <div className="flex flex-col items-center text-center">
-      <h2 className="text-4xl mb-4">Score final : 0</h2>
-      <p className="text-lg">Bravo !</p>
+    <div className="flex flex-col items-center justify-center h-screen bg-gray-900 text-white p-4">
+      <h2 className="text-4xl font-bold mb-4">🎉 Bravo ! 🎉</h2>
+      <p className="text-2xl">Votre score final est {score} / {total}</p>
     </div>
   );
 }
