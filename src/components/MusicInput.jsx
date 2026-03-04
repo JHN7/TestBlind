@@ -50,7 +50,7 @@ function MusicInput({ onGameOver, setFinalScore }) {
                     newFound.push(line);
                 }
             });
-
+            const percentageScore = Math.round((score / lines.length) * 100);
             if (newFound.length > 0) {
                 setScore((prev) => prev + newScore);
                 setFoundLines((prev) => [...prev, ...newFound]);
@@ -80,7 +80,7 @@ function MusicInput({ onGameOver, setFinalScore }) {
                 <h2 className="text-3xl font-bold mb-1">{currentMusic.title}</h2>
                 <h3 className="text-xl mb-2">{currentMusic.artist}</h3>
                 <p className="text-lg">Temps restant : {timeLeft}s</p>
-                <p className="mt-2 text-lg">Score : {score} / {currentMusic.lyrics.length}</p>
+                <p className="mt-2 text-lg">Score : {Math.round((score / currentMusic.lyrics.length) * 100)}%</p>
             </div>
 
             {/* Milieu : afficher uniquement les phrases trouvées */}
@@ -115,7 +115,7 @@ function MusicInput({ onGameOver, setFinalScore }) {
                         e.target.style.height = e.target.scrollHeight + "px"; // ajuste à la hauteur du contenu
                     }}
                     onKeyDown={handleKeyDown}
-                    placeholder="Écris les paroles ici, ligne par ligne. Vous pouvez retourner à la ligne avec Shift + Enter. Pour valider la sélection, appuyez sur Enter."
+                    placeholder="Écrivez les paroles ici, ligne par ligne. Vous pouvez retourner à la ligne avec Shift + Enter. Pour valider la sélection, appuyez sur Enter."
                     className={`border rounded-xl px-4 py-3 w-full resize-none text-center text-white transition-all duration-300 focus:outline-none focus:ring-2
                     ${isError
                             ? "border-red-500 bg-red-500/10 animate-shake"
