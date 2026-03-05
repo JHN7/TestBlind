@@ -4,7 +4,7 @@ import musics from "../data/musics.json";
 function MusicInput({ onGameOver, setFinalScore }) {
     const [input, setInput] = useState("");
     const [score, setScore] = useState(0);
-    const [timeLeft, setTimeLeft] = useState(9999); // 1 minute en millisecondes
+    const [timeLeft, setTimeLeft] = useState(10); // 1 minute en millisecondes
     const [foundLines, setFoundLines] = useState([]);
     const [recentLines, setRecentLines] = useState([]);
     const [isError, setIsError] = useState(false);
@@ -18,7 +18,8 @@ function MusicInput({ onGameOver, setFinalScore }) {
     const lines = currentMusic.lyrics.map((line) => cleanText(line));
 
     const handleGameOver = () => {
-        if (setFinalScore) setFinalScore(score);
+        const percentageScore = Math.round((score / lines.length) * 100);
+        if (setFinalScore) setFinalScore(percentageScore);
         onGameOver();
     };
 
@@ -50,7 +51,6 @@ function MusicInput({ onGameOver, setFinalScore }) {
                     newFound.push(line);
                 }
             });
-            const percentageScore = Math.round((score / lines.length) * 100);
             if (newFound.length > 0) {
                 setScore((prev) => prev + newScore);
                 setFoundLines((prev) => [...prev, ...newFound]);
